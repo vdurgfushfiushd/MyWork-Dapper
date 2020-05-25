@@ -1,0 +1,750 @@
+2020-03-10 15:54:25,999 [9] DEBUG MyWork.App_Start.Filter.ActionFilter - 未知姓名的人执行了NoteManage控制器的Login方法
+2020-03-10 15:54:26,018 [9] DEBUG MyWork.App_Start.Filter.ActionFilter - 未知姓名的人执行了NoteManage控制器的Login方法
+2020-03-10 15:54:37,437 [12] DEBUG DAL.MyDBContext - EF执行SQL:SELECT
+`GroupBy1`.`A1` AS `C1`
+FROM (SELECT
+COUNT(1) AS `A1`
+FROM `__MigrationHistory` AS `Extent1`) AS `GroupBy1`
+2020-03-10 15:54:37,437 [12] DEBUG DAL.MyDBContext - EF执行SQL:
+
+2020-03-10 15:54:37,443 [12] DEBUG DAL.MyDBContext - EF执行SQL:-- Executing at 2020/3/10 15:54:37 +08:00
+
+2020-03-10 15:54:37,461 [12] DEBUG DAL.MyDBContext - EF执行SQL:-- Failed in 16 ms with error: Table 'notemanage_new.__migrationhistory' doesn't exist
+
+2020-03-10 15:54:37,462 [12] DEBUG DAL.MyDBContext - EF执行SQL:
+
+2020-03-10 15:54:37,528 [12] DEBUG DAL.MyDBContext - EF执行SQL:SELECT
+`GroupBy1`.`A1` AS `C1`
+FROM (SELECT
+COUNT(1) AS `A1`
+FROM `__MigrationHistory` AS `Extent1`) AS `GroupBy1`
+2020-03-10 15:54:37,528 [12] DEBUG DAL.MyDBContext - EF执行SQL:
+
+2020-03-10 15:54:37,528 [12] DEBUG DAL.MyDBContext - EF执行SQL:-- Executing at 2020/3/10 15:54:37 +08:00
+
+2020-03-10 15:54:37,529 [12] DEBUG DAL.MyDBContext - EF执行SQL:-- Failed in 0 ms with error: Table 'notemanage_new.__migrationhistory' doesn't exist
+
+2020-03-10 15:54:37,529 [12] DEBUG DAL.MyDBContext - EF执行SQL:
+
+2020-03-10 15:54:37,896 [12] DEBUG DAL.MyDBContext - EF执行SQL:SELECT
+`Extent1`.`Id`, 
+`Extent1`.`Name`, 
+`Extent1`.`Password`, 
+`Extent1`.`Height`, 
+`Extent1`.`CreateTime`, 
+`Extent1`.`IsDeleted`, 
+`Extent1`.`Describe`
+FROM `t_users` AS `Extent1`
+ WHERE ((((`Extent1`.`Name` = @p__linq__0) AND (NOT ((`Extent1`.`Name` IS  NULL) OR (@p__linq__0 IS  NULL)))) OR ((`Extent1`.`Name` IS  NULL) AND (@p__linq__0 IS  NULL))) AND (((`Extent1`.`Password` = @p__linq__1) AND (NOT ((`Extent1`.`Password` IS  NULL) OR (@p__linq__1 IS  NULL)))) OR ((`Extent1`.`Password` IS  NULL) AND (@p__linq__1 IS  NULL)))) AND (0 = `Extent1`.`IsDeleted`) LIMIT 2
+2020-03-10 15:54:37,896 [12] DEBUG DAL.MyDBContext - EF执行SQL:
+
+2020-03-10 15:54:37,897 [12] DEBUG DAL.MyDBContext - EF执行SQL:-- p__linq__0: 'zhangfei' (Type = String, Size = 8)
+
+2020-03-10 15:54:37,897 [12] DEBUG DAL.MyDBContext - EF执行SQL:-- p__linq__1: 'xxxx' (Type = String, Size = 4)
+
+2020-03-10 15:54:37,897 [12] DEBUG DAL.MyDBContext - EF执行SQL:-- Executing asynchronously at 2020/3/10 15:54:37 +08:00
+
+2020-03-10 15:54:37,913 [12] DEBUG DAL.MyDBContext - EF执行SQL:-- Completed in 16 ms with result: EFMySqlDataReader
+
+2020-03-10 15:54:37,913 [12] DEBUG DAL.MyDBContext - EF执行SQL:
+
+2020-03-10 15:54:38,087 [5] DEBUG MyWork.App_Start.Filter.ActionFilter - zhangfei正在执行NoteManage控制器的Index方法
+2020-03-10 15:54:38,087 [5] DEBUG MyWork.App_Start.Filter.ActionFilter - zhangfei执行了NoteManage控制器的Index方法
+2020-03-10 15:54:46,122 [7] DEBUG DAL.MyDBContext - EF执行SQL:SELECT
+`Extent1`.`Id`, 
+`Extent1`.`Name`, 
+`Extent1`.`Password`, 
+`Extent1`.`Height`, 
+`Extent1`.`CreateTime`, 
+`Extent1`.`IsDeleted`, 
+`Extent1`.`Describe`
+FROM `t_users` AS `Extent1`
+ WHERE ((`Extent1`.`Id` = @p__linq__0) AND (@p__linq__0 IS NOT NULL)) AND (0 = `Extent1`.`IsDeleted`) LIMIT 2
+2020-03-10 15:54:46,122 [7] DEBUG DAL.MyDBContext - EF执行SQL:
+
+2020-03-10 15:54:46,122 [7] DEBUG DAL.MyDBContext - EF执行SQL:-- p__linq__0: '3f632043273f4965ab6e484c127feefc' (Type = String, Size = 32)
+
+2020-03-10 15:54:46,122 [7] DEBUG DAL.MyDBContext - EF执行SQL:-- Executing at 2020/3/10 15:54:46 +08:00
+
+2020-03-10 15:54:46,123 [7] DEBUG DAL.MyDBContext - EF执行SQL:-- Completed in 0 ms with result: EFMySqlDataReader
+
+2020-03-10 15:54:46,123 [7] DEBUG DAL.MyDBContext - EF执行SQL:
+
+2020-03-10 15:54:46,243 [7] DEBUG DAL.MyDBContext - EF执行SQL:SELECT
+`Extent2`.`Id`, 
+`Extent2`.`Name`, 
+`Extent2`.`CreateTime`, 
+`Extent2`.`IsDeleted`, 
+`Extent2`.`Describe`
+FROM `t_userrolerelations` AS `Extent1` INNER JOIN `t_roles` AS `Extent2` ON `Extent1`.`Role_Id` = `Extent2`.`Id`
+ WHERE `Extent1`.`User_Id` = @EntityKeyValue1
+2020-03-10 15:54:46,243 [7] DEBUG DAL.MyDBContext - EF执行SQL:
+
+2020-03-10 15:54:46,243 [7] DEBUG DAL.MyDBContext - EF执行SQL:-- EntityKeyValue1: '3f632043273f4965ab6e484c127feefc' (Type = String, Size = 128)
+
+2020-03-10 15:54:46,244 [7] DEBUG DAL.MyDBContext - EF执行SQL:-- Executing at 2020/3/10 15:54:46 +08:00
+
+2020-03-10 15:54:46,244 [7] DEBUG DAL.MyDBContext - EF执行SQL:-- Completed in 0 ms with result: EFMySqlDataReader
+
+2020-03-10 15:54:46,244 [7] DEBUG DAL.MyDBContext - EF执行SQL:
+
+2020-03-10 15:54:46,281 [7] DEBUG DAL.MyDBContext - EF执行SQL:SELECT
+`Extent2`.`Id`, 
+`Extent2`.`ModuleId`, 
+`Extent2`.`ModuleName`, 
+`Extent2`.`Describe`, 
+`Extent2`.`ControllerName`, 
+`Extent2`.`ActionName`, 
+`Extent2`.`CreateTime`, 
+`Extent2`.`IsDeleted`
+FROM `t_rolemodulerelations` AS `Extent1` INNER JOIN `t_modules` AS `Extent2` ON `Extent1`.`Module_Id` = `Extent2`.`Id`
+ WHERE `Extent1`.`Role_Id` = @EntityKeyValue1
+2020-03-10 15:54:46,281 [7] DEBUG DAL.MyDBContext - EF执行SQL:
+
+2020-03-10 15:54:46,281 [7] DEBUG DAL.MyDBContext - EF执行SQL:-- EntityKeyValue1: 'b24dbcc4-b42f-49d1-84a5-5c923a8f6162' (Type = String, Size = 128)
+
+2020-03-10 15:54:46,281 [7] DEBUG DAL.MyDBContext - EF执行SQL:-- Executing at 2020/3/10 15:54:46 +08:00
+
+2020-03-10 15:54:46,397 [7] DEBUG DAL.MyDBContext - EF执行SQL:-- Completed in 115 ms with result: EFMySqlDataReader
+
+2020-03-10 15:54:46,397 [7] DEBUG DAL.MyDBContext - EF执行SQL:
+
+2020-03-10 15:54:46,422 [7] DEBUG DAL.MyDBContext - EF执行SQL:SELECT
+`Extent2`.`Id`, 
+`Extent2`.`ModuleId`, 
+`Extent2`.`ModuleName`, 
+`Extent2`.`Describe`, 
+`Extent2`.`ControllerName`, 
+`Extent2`.`ActionName`, 
+`Extent2`.`CreateTime`, 
+`Extent2`.`IsDeleted`
+FROM `t_usermodulerelations` AS `Extent1` INNER JOIN `t_modules` AS `Extent2` ON `Extent1`.`Module_Id` = `Extent2`.`Id`
+ WHERE `Extent1`.`User_Id` = @EntityKeyValue1
+2020-03-10 15:54:46,422 [7] DEBUG DAL.MyDBContext - EF执行SQL:
+
+2020-03-10 15:54:46,422 [7] DEBUG DAL.MyDBContext - EF执行SQL:-- EntityKeyValue1: '3f632043273f4965ab6e484c127feefc' (Type = String, Size = 128)
+
+2020-03-10 15:54:46,422 [7] DEBUG DAL.MyDBContext - EF执行SQL:-- Executing at 2020/3/10 15:54:46 +08:00
+
+2020-03-10 15:54:46,467 [7] DEBUG DAL.MyDBContext - EF执行SQL:-- Completed in 45 ms with result: EFMySqlDataReader
+
+2020-03-10 15:54:46,467 [7] DEBUG DAL.MyDBContext - EF执行SQL:
+
+2020-03-10 15:54:46,537 [6] DEBUG MyWork.App_Start.Filter.ActionFilter - zhangfei正在执行General控制器的PermissionsWarning方法
+2020-03-10 15:54:46,538 [6] DEBUG MyWork.App_Start.Filter.ActionFilter - zhangfei执行了General控制器的PermissionsWarning方法
+2020-03-10 15:55:08,100 [12] DEBUG DAL.MyDBContext - EF执行SQL:SELECT
+`Extent1`.`Id`, 
+`Extent1`.`Name`, 
+`Extent1`.`Password`, 
+`Extent1`.`Height`, 
+`Extent1`.`CreateTime`, 
+`Extent1`.`IsDeleted`, 
+`Extent1`.`Describe`
+FROM `t_users` AS `Extent1`
+ WHERE ((`Extent1`.`Id` = @p__linq__0) AND (@p__linq__0 IS NOT NULL)) AND (0 = `Extent1`.`IsDeleted`) LIMIT 2
+2020-03-10 15:55:08,100 [12] DEBUG DAL.MyDBContext - EF执行SQL:
+
+2020-03-10 15:55:08,100 [12] DEBUG DAL.MyDBContext - EF执行SQL:-- p__linq__0: '3f632043273f4965ab6e484c127feefc' (Type = String, Size = 32)
+
+2020-03-10 15:55:08,100 [12] DEBUG DAL.MyDBContext - EF执行SQL:-- Executing at 2020/3/10 15:55:08 +08:00
+
+2020-03-10 15:55:08,101 [12] DEBUG DAL.MyDBContext - EF执行SQL:-- Completed in 0 ms with result: EFMySqlDataReader
+
+2020-03-10 15:55:08,101 [12] DEBUG DAL.MyDBContext - EF执行SQL:
+
+2020-03-10 15:55:08,119 [14] DEBUG MyWork.App_Start.Filter.ActionFilter - zhangfei正在执行General控制器的PermissionsWarning方法
+2020-03-10 15:55:08,119 [14] DEBUG MyWork.App_Start.Filter.ActionFilter - zhangfei执行了General控制器的PermissionsWarning方法
+2020-03-10 15:55:09,518 [12] DEBUG DAL.MyDBContext - EF执行SQL:SELECT
+`Extent1`.`Id`, 
+`Extent1`.`Name`, 
+`Extent1`.`Password`, 
+`Extent1`.`Height`, 
+`Extent1`.`CreateTime`, 
+`Extent1`.`IsDeleted`, 
+`Extent1`.`Describe`
+FROM `t_users` AS `Extent1`
+ WHERE ((`Extent1`.`Id` = @p__linq__0) AND (@p__linq__0 IS NOT NULL)) AND (0 = `Extent1`.`IsDeleted`) LIMIT 2
+2020-03-10 15:55:09,518 [12] DEBUG DAL.MyDBContext - EF执行SQL:
+
+2020-03-10 15:55:09,518 [12] DEBUG DAL.MyDBContext - EF执行SQL:-- p__linq__0: '3f632043273f4965ab6e484c127feefc' (Type = String, Size = 32)
+
+2020-03-10 15:55:09,518 [12] DEBUG DAL.MyDBContext - EF执行SQL:-- Executing at 2020/3/10 15:55:09 +08:00
+
+2020-03-10 15:55:09,519 [12] DEBUG DAL.MyDBContext - EF执行SQL:-- Completed in 0 ms with result: EFMySqlDataReader
+
+2020-03-10 15:55:09,519 [12] DEBUG DAL.MyDBContext - EF执行SQL:
+
+2020-03-10 15:55:09,543 [14] DEBUG MyWork.App_Start.Filter.ActionFilter - zhangfei正在执行General控制器的PermissionsWarning方法
+2020-03-10 15:55:09,543 [14] DEBUG MyWork.App_Start.Filter.ActionFilter - zhangfei执行了General控制器的PermissionsWarning方法
+2020-03-10 15:55:09,818 [5] DEBUG DAL.MyDBContext - EF执行SQL:SELECT
+`Extent1`.`Id`, 
+`Extent1`.`Name`, 
+`Extent1`.`Password`, 
+`Extent1`.`Height`, 
+`Extent1`.`CreateTime`, 
+`Extent1`.`IsDeleted`, 
+`Extent1`.`Describe`
+FROM `t_users` AS `Extent1`
+ WHERE ((`Extent1`.`Id` = @p__linq__0) AND (@p__linq__0 IS NOT NULL)) AND (0 = `Extent1`.`IsDeleted`) LIMIT 2
+2020-03-10 15:55:09,818 [5] DEBUG DAL.MyDBContext - EF执行SQL:
+
+2020-03-10 15:55:09,818 [5] DEBUG DAL.MyDBContext - EF执行SQL:-- p__linq__0: '3f632043273f4965ab6e484c127feefc' (Type = String, Size = 32)
+
+2020-03-10 15:55:09,818 [5] DEBUG DAL.MyDBContext - EF执行SQL:-- Executing at 2020/3/10 15:55:09 +08:00
+
+2020-03-10 15:55:09,819 [5] DEBUG DAL.MyDBContext - EF执行SQL:-- Completed in 0 ms with result: EFMySqlDataReader
+
+2020-03-10 15:55:09,819 [5] DEBUG DAL.MyDBContext - EF执行SQL:
+
+2020-03-10 15:55:09,839 [6] DEBUG MyWork.App_Start.Filter.ActionFilter - zhangfei正在执行General控制器的PermissionsWarning方法
+2020-03-10 15:55:09,839 [6] DEBUG MyWork.App_Start.Filter.ActionFilter - zhangfei执行了General控制器的PermissionsWarning方法
+2020-03-10 15:55:10,705 [6] DEBUG DAL.MyDBContext - EF执行SQL:SELECT
+`Extent1`.`Id`, 
+`Extent1`.`Name`, 
+`Extent1`.`Password`, 
+`Extent1`.`Height`, 
+`Extent1`.`CreateTime`, 
+`Extent1`.`IsDeleted`, 
+`Extent1`.`Describe`
+FROM `t_users` AS `Extent1`
+ WHERE ((`Extent1`.`Id` = @p__linq__0) AND (@p__linq__0 IS NOT NULL)) AND (0 = `Extent1`.`IsDeleted`) LIMIT 2
+2020-03-10 15:55:10,705 [6] DEBUG DAL.MyDBContext - EF执行SQL:
+
+2020-03-10 15:55:10,705 [6] DEBUG DAL.MyDBContext - EF执行SQL:-- p__linq__0: '3f632043273f4965ab6e484c127feefc' (Type = String, Size = 32)
+
+2020-03-10 15:55:10,706 [6] DEBUG DAL.MyDBContext - EF执行SQL:-- Executing at 2020/3/10 15:55:10 +08:00
+
+2020-03-10 15:55:10,707 [6] DEBUG DAL.MyDBContext - EF执行SQL:-- Completed in 1 ms with result: EFMySqlDataReader
+
+2020-03-10 15:55:10,707 [6] DEBUG DAL.MyDBContext - EF执行SQL:
+
+2020-03-10 15:55:10,730 [12] DEBUG MyWork.App_Start.Filter.ActionFilter - zhangfei正在执行General控制器的PermissionsWarning方法
+2020-03-10 15:55:10,730 [12] DEBUG MyWork.App_Start.Filter.ActionFilter - zhangfei执行了General控制器的PermissionsWarning方法
+2020-03-10 15:55:11,537 [7] DEBUG DAL.MyDBContext - EF执行SQL:SELECT
+`Extent1`.`Id`, 
+`Extent1`.`Name`, 
+`Extent1`.`Password`, 
+`Extent1`.`Height`, 
+`Extent1`.`CreateTime`, 
+`Extent1`.`IsDeleted`, 
+`Extent1`.`Describe`
+FROM `t_users` AS `Extent1`
+ WHERE ((`Extent1`.`Id` = @p__linq__0) AND (@p__linq__0 IS NOT NULL)) AND (0 = `Extent1`.`IsDeleted`) LIMIT 2
+2020-03-10 15:55:11,537 [7] DEBUG DAL.MyDBContext - EF执行SQL:
+
+2020-03-10 15:55:11,538 [7] DEBUG DAL.MyDBContext - EF执行SQL:-- p__linq__0: '3f632043273f4965ab6e484c127feefc' (Type = String, Size = 32)
+
+2020-03-10 15:55:11,538 [7] DEBUG DAL.MyDBContext - EF执行SQL:-- Executing at 2020/3/10 15:55:11 +08:00
+
+2020-03-10 15:55:11,538 [7] DEBUG DAL.MyDBContext - EF执行SQL:-- Completed in 0 ms with result: EFMySqlDataReader
+
+2020-03-10 15:55:11,538 [7] DEBUG DAL.MyDBContext - EF执行SQL:
+
+2020-03-10 15:55:11,556 [12] DEBUG MyWork.App_Start.Filter.ActionFilter - zhangfei正在执行General控制器的PermissionsWarning方法
+2020-03-10 15:55:11,556 [12] DEBUG MyWork.App_Start.Filter.ActionFilter - zhangfei执行了General控制器的PermissionsWarning方法
+2020-03-10 15:55:12,127 [14] DEBUG DAL.MyDBContext - EF执行SQL:SELECT
+`Extent1`.`Id`, 
+`Extent1`.`Name`, 
+`Extent1`.`Password`, 
+`Extent1`.`Height`, 
+`Extent1`.`CreateTime`, 
+`Extent1`.`IsDeleted`, 
+`Extent1`.`Describe`
+FROM `t_users` AS `Extent1`
+ WHERE ((`Extent1`.`Id` = @p__linq__0) AND (@p__linq__0 IS NOT NULL)) AND (0 = `Extent1`.`IsDeleted`) LIMIT 2
+2020-03-10 15:55:12,127 [14] DEBUG DAL.MyDBContext - EF执行SQL:
+
+2020-03-10 15:55:12,128 [14] DEBUG DAL.MyDBContext - EF执行SQL:-- p__linq__0: '3f632043273f4965ab6e484c127feefc' (Type = String, Size = 32)
+
+2020-03-10 15:55:12,128 [14] DEBUG DAL.MyDBContext - EF执行SQL:-- Executing at 2020/3/10 15:55:12 +08:00
+
+2020-03-10 15:55:12,128 [14] DEBUG DAL.MyDBContext - EF执行SQL:-- Completed in 0 ms with result: EFMySqlDataReader
+
+2020-03-10 15:55:12,128 [14] DEBUG DAL.MyDBContext - EF执行SQL:
+
+2020-03-10 15:55:12,154 [9] DEBUG MyWork.App_Start.Filter.ActionFilter - zhangfei正在执行General控制器的PermissionsWarning方法
+2020-03-10 15:55:12,154 [9] DEBUG MyWork.App_Start.Filter.ActionFilter - zhangfei执行了General控制器的PermissionsWarning方法
+2020-03-10 15:55:12,328 [14] DEBUG DAL.MyDBContext - EF执行SQL:SELECT
+`Extent1`.`Id`, 
+`Extent1`.`Name`, 
+`Extent1`.`Password`, 
+`Extent1`.`Height`, 
+`Extent1`.`CreateTime`, 
+`Extent1`.`IsDeleted`, 
+`Extent1`.`Describe`
+FROM `t_users` AS `Extent1`
+ WHERE ((`Extent1`.`Id` = @p__linq__0) AND (@p__linq__0 IS NOT NULL)) AND (0 = `Extent1`.`IsDeleted`) LIMIT 2
+2020-03-10 15:55:12,328 [14] DEBUG DAL.MyDBContext - EF执行SQL:
+
+2020-03-10 15:55:12,328 [14] DEBUG DAL.MyDBContext - EF执行SQL:-- p__linq__0: '3f632043273f4965ab6e484c127feefc' (Type = String, Size = 32)
+
+2020-03-10 15:55:12,328 [14] DEBUG DAL.MyDBContext - EF执行SQL:-- Executing at 2020/3/10 15:55:12 +08:00
+
+2020-03-10 15:55:12,329 [14] DEBUG DAL.MyDBContext - EF执行SQL:-- Completed in 0 ms with result: EFMySqlDataReader
+
+2020-03-10 15:55:12,329 [14] DEBUG DAL.MyDBContext - EF执行SQL:
+
+2020-03-10 15:55:12,351 [9] DEBUG MyWork.App_Start.Filter.ActionFilter - zhangfei正在执行General控制器的PermissionsWarning方法
+2020-03-10 15:55:12,351 [9] DEBUG MyWork.App_Start.Filter.ActionFilter - zhangfei执行了General控制器的PermissionsWarning方法
+2020-03-10 15:55:15,564 [7] DEBUG MyWork.App_Start.Filter.ActionFilter - zhangfei正在执行NoteManage控制器的Login方法
+2020-03-10 15:55:15,564 [7] DEBUG MyWork.App_Start.Filter.ActionFilter - zhangfei执行了NoteManage控制器的Login方法
+2020-03-10 15:55:20,812 [14] DEBUG DAL.MyDBContext - EF执行SQL:SELECT
+`Extent1`.`Id`, 
+`Extent1`.`Name`, 
+`Extent1`.`Password`, 
+`Extent1`.`Height`, 
+`Extent1`.`CreateTime`, 
+`Extent1`.`IsDeleted`, 
+`Extent1`.`Describe`
+FROM `t_users` AS `Extent1`
+ WHERE ((((`Extent1`.`Name` = @p__linq__0) AND (NOT ((`Extent1`.`Name` IS  NULL) OR (@p__linq__0 IS  NULL)))) OR ((`Extent1`.`Name` IS  NULL) AND (@p__linq__0 IS  NULL))) AND (((`Extent1`.`Password` = @p__linq__1) AND (NOT ((`Extent1`.`Password` IS  NULL) OR (@p__linq__1 IS  NULL)))) OR ((`Extent1`.`Password` IS  NULL) AND (@p__linq__1 IS  NULL)))) AND (0 = `Extent1`.`IsDeleted`) LIMIT 2
+2020-03-10 15:55:20,812 [14] DEBUG DAL.MyDBContext - EF执行SQL:
+
+2020-03-10 15:55:20,812 [14] DEBUG DAL.MyDBContext - EF执行SQL:-- p__linq__0: 'zhangfei' (Type = String, Size = 8)
+
+2020-03-10 15:55:20,812 [14] DEBUG DAL.MyDBContext - EF执行SQL:-- p__linq__1: 'xxxx' (Type = String, Size = 4)
+
+2020-03-10 15:55:20,812 [14] DEBUG DAL.MyDBContext - EF执行SQL:-- Executing asynchronously at 2020/3/10 15:55:20 +08:00
+
+2020-03-10 15:55:20,813 [14] DEBUG DAL.MyDBContext - EF执行SQL:-- Completed in 0 ms with result: EFMySqlDataReader
+
+2020-03-10 15:55:20,813 [14] DEBUG DAL.MyDBContext - EF执行SQL:
+
+2020-03-10 15:55:20,829 [6] DEBUG MyWork.App_Start.Filter.ActionFilter - zhangfei正在执行NoteManage控制器的Index方法
+2020-03-10 15:55:20,829 [6] DEBUG MyWork.App_Start.Filter.ActionFilter - zhangfei执行了NoteManage控制器的Index方法
+2020-03-10 15:55:23,924 [7] DEBUG DAL.MyDBContext - EF执行SQL:SELECT
+`Extent1`.`Id`, 
+`Extent1`.`Name`, 
+`Extent1`.`Password`, 
+`Extent1`.`Height`, 
+`Extent1`.`CreateTime`, 
+`Extent1`.`IsDeleted`, 
+`Extent1`.`Describe`
+FROM `t_users` AS `Extent1`
+ WHERE ((`Extent1`.`Id` = @p__linq__0) AND (@p__linq__0 IS NOT NULL)) AND (0 = `Extent1`.`IsDeleted`) LIMIT 2
+2020-03-10 15:55:23,925 [7] DEBUG DAL.MyDBContext - EF执行SQL:
+
+2020-03-10 15:55:23,925 [7] DEBUG DAL.MyDBContext - EF执行SQL:-- p__linq__0: '3f632043273f4965ab6e484c127feefc' (Type = String, Size = 32)
+
+2020-03-10 15:55:23,925 [7] DEBUG DAL.MyDBContext - EF执行SQL:-- Executing at 2020/3/10 15:55:23 +08:00
+
+2020-03-10 15:55:23,925 [7] DEBUG DAL.MyDBContext - EF执行SQL:-- Completed in 0 ms with result: EFMySqlDataReader
+
+2020-03-10 15:55:23,925 [7] DEBUG DAL.MyDBContext - EF执行SQL:
+
+2020-03-10 15:55:23,974 [9] DEBUG MyWork.App_Start.Filter.ActionFilter - zhangfei正在执行General控制器的PermissionsWarning方法
+2020-03-10 15:55:23,974 [9] DEBUG MyWork.App_Start.Filter.ActionFilter - zhangfei执行了General控制器的PermissionsWarning方法
+2020-03-10 16:01:42,893 [11] DEBUG MyWork.App_Start.Filter.ActionFilter - 未知姓名的人执行了NoteManage控制器的Login方法
+2020-03-10 16:01:42,917 [11] DEBUG MyWork.App_Start.Filter.ActionFilter - 未知姓名的人执行了NoteManage控制器的Login方法
+2020-03-10 16:03:54,254 [11] DEBUG DAL.MyDBContext - EF执行SQL:SELECT
+`GroupBy1`.`A1` AS `C1`
+FROM (SELECT
+COUNT(1) AS `A1`
+FROM `__MigrationHistory` AS `Extent1`) AS `GroupBy1`
+2020-03-10 16:03:54,254 [11] DEBUG DAL.MyDBContext - EF执行SQL:
+
+2020-03-10 16:03:54,260 [11] DEBUG DAL.MyDBContext - EF执行SQL:-- Executing at 2020/3/10 16:03:54 +08:00
+
+2020-03-10 16:03:54,263 [11] DEBUG DAL.MyDBContext - EF执行SQL:-- Failed in 2 ms with error: Table 'notemanage_new.__migrationhistory' doesn't exist
+
+2020-03-10 16:03:54,263 [11] DEBUG DAL.MyDBContext - EF执行SQL:
+
+2020-03-10 16:03:54,332 [11] DEBUG DAL.MyDBContext - EF执行SQL:SELECT
+`GroupBy1`.`A1` AS `C1`
+FROM (SELECT
+COUNT(1) AS `A1`
+FROM `__MigrationHistory` AS `Extent1`) AS `GroupBy1`
+2020-03-10 16:03:54,332 [11] DEBUG DAL.MyDBContext - EF执行SQL:
+
+2020-03-10 16:03:54,332 [11] DEBUG DAL.MyDBContext - EF执行SQL:-- Executing at 2020/3/10 16:03:54 +08:00
+
+2020-03-10 16:03:54,332 [11] DEBUG DAL.MyDBContext - EF执行SQL:-- Failed in 0 ms with error: Table 'notemanage_new.__migrationhistory' doesn't exist
+
+2020-03-10 16:03:54,332 [11] DEBUG DAL.MyDBContext - EF执行SQL:
+
+2020-03-10 16:03:54,671 [11] DEBUG DAL.MyDBContext - EF执行SQL:SELECT
+`Extent1`.`Id`, 
+`Extent1`.`Name`, 
+`Extent1`.`Password`, 
+`Extent1`.`Height`, 
+`Extent1`.`CreateTime`, 
+`Extent1`.`IsDeleted`, 
+`Extent1`.`Describe`
+FROM `t_users` AS `Extent1`
+ WHERE ((((`Extent1`.`Name` = @p__linq__0) AND (NOT ((`Extent1`.`Name` IS  NULL) OR (@p__linq__0 IS  NULL)))) OR ((`Extent1`.`Name` IS  NULL) AND (@p__linq__0 IS  NULL))) AND (((`Extent1`.`Password` = @p__linq__1) AND (NOT ((`Extent1`.`Password` IS  NULL) OR (@p__linq__1 IS  NULL)))) OR ((`Extent1`.`Password` IS  NULL) AND (@p__linq__1 IS  NULL)))) AND (0 = `Extent1`.`IsDeleted`) LIMIT 2
+2020-03-10 16:03:54,671 [11] DEBUG DAL.MyDBContext - EF执行SQL:
+
+2020-03-10 16:03:54,672 [11] DEBUG DAL.MyDBContext - EF执行SQL:-- p__linq__0: 'admin' (Type = String, Size = 5)
+
+2020-03-10 16:03:54,672 [11] DEBUG DAL.MyDBContext - EF执行SQL:-- p__linq__1: 'xxxx' (Type = String, Size = 4)
+
+2020-03-10 16:03:54,672 [11] DEBUG DAL.MyDBContext - EF执行SQL:-- Executing asynchronously at 2020/3/10 16:03:54 +08:00
+
+2020-03-10 16:03:54,676 [11] DEBUG DAL.MyDBContext - EF执行SQL:-- Completed in 4 ms with result: EFMySqlDataReader
+
+2020-03-10 16:03:54,676 [11] DEBUG DAL.MyDBContext - EF执行SQL:
+
+2020-03-10 16:03:54,855 [9] DEBUG MyWork.App_Start.Filter.ActionFilter - admin正在执行NoteManage控制器的Index方法
+2020-03-10 16:03:54,856 [9] DEBUG MyWork.App_Start.Filter.ActionFilter - admin执行了NoteManage控制器的Index方法
+2020-03-10 16:03:59,283 [5] DEBUG DAL.MyDBContext - EF执行SQL:SELECT
+`Extent1`.`Id`, 
+`Extent1`.`Name`, 
+`Extent1`.`Password`, 
+`Extent1`.`Height`, 
+`Extent1`.`CreateTime`, 
+`Extent1`.`IsDeleted`, 
+`Extent1`.`Describe`
+FROM `t_users` AS `Extent1`
+ WHERE ((`Extent1`.`Id` = @p__linq__0) AND (@p__linq__0 IS NOT NULL)) AND (0 = `Extent1`.`IsDeleted`) LIMIT 2
+2020-03-10 16:03:59,283 [5] DEBUG DAL.MyDBContext - EF执行SQL:
+
+2020-03-10 16:03:59,283 [5] DEBUG DAL.MyDBContext - EF执行SQL:-- p__linq__0: '3f632043273f4965ab6e484c127feefd' (Type = String, Size = 32)
+
+2020-03-10 16:03:59,283 [5] DEBUG DAL.MyDBContext - EF执行SQL:-- Executing at 2020/3/10 16:03:59 +08:00
+
+2020-03-10 16:03:59,284 [5] DEBUG DAL.MyDBContext - EF执行SQL:-- Completed in 0 ms with result: EFMySqlDataReader
+
+2020-03-10 16:03:59,284 [5] DEBUG DAL.MyDBContext - EF执行SQL:
+
+2020-03-10 16:03:59,397 [5] DEBUG DAL.MyDBContext - EF执行SQL:SELECT
+`Extent2`.`Id`, 
+`Extent2`.`Name`, 
+`Extent2`.`CreateTime`, 
+`Extent2`.`IsDeleted`, 
+`Extent2`.`Describe`
+FROM `t_userrolerelations` AS `Extent1` INNER JOIN `t_roles` AS `Extent2` ON `Extent1`.`Role_Id` = `Extent2`.`Id`
+ WHERE `Extent1`.`User_Id` = @EntityKeyValue1
+2020-03-10 16:03:59,397 [5] DEBUG DAL.MyDBContext - EF执行SQL:
+
+2020-03-10 16:03:59,397 [5] DEBUG DAL.MyDBContext - EF执行SQL:-- EntityKeyValue1: '3f632043273f4965ab6e484c127feefd' (Type = String, Size = 128)
+
+2020-03-10 16:03:59,397 [5] DEBUG DAL.MyDBContext - EF执行SQL:-- Executing at 2020/3/10 16:03:59 +08:00
+
+2020-03-10 16:03:59,397 [5] DEBUG DAL.MyDBContext - EF执行SQL:-- Completed in 0 ms with result: EFMySqlDataReader
+
+2020-03-10 16:03:59,398 [5] DEBUG DAL.MyDBContext - EF执行SQL:
+
+2020-03-10 16:03:59,422 [5] DEBUG DAL.MyDBContext - EF执行SQL:SELECT
+`Extent2`.`Id`, 
+`Extent2`.`ModuleId`, 
+`Extent2`.`ModuleName`, 
+`Extent2`.`Describe`, 
+`Extent2`.`ControllerName`, 
+`Extent2`.`ActionName`, 
+`Extent2`.`CreateTime`, 
+`Extent2`.`IsDeleted`
+FROM `t_usermodulerelations` AS `Extent1` INNER JOIN `t_modules` AS `Extent2` ON `Extent1`.`Module_Id` = `Extent2`.`Id`
+ WHERE `Extent1`.`User_Id` = @EntityKeyValue1
+2020-03-10 16:03:59,422 [5] DEBUG DAL.MyDBContext - EF执行SQL:
+
+2020-03-10 16:03:59,422 [5] DEBUG DAL.MyDBContext - EF执行SQL:-- EntityKeyValue1: '3f632043273f4965ab6e484c127feefd' (Type = String, Size = 128)
+
+2020-03-10 16:03:59,422 [5] DEBUG DAL.MyDBContext - EF执行SQL:-- Executing at 2020/3/10 16:03:59 +08:00
+
+2020-03-10 16:03:59,422 [5] DEBUG DAL.MyDBContext - EF执行SQL:-- Completed in 0 ms with result: EFMySqlDataReader
+
+2020-03-10 16:03:59,422 [5] DEBUG DAL.MyDBContext - EF执行SQL:
+
+2020-03-10 16:03:59,423 [5] DEBUG MyWork.App_Start.Filter.ActionFilter - admin正在执行User控制器的Index方法
+2020-03-10 16:03:59,423 [5] DEBUG MyWork.App_Start.Filter.ActionFilter - admin执行了User控制器的Index方法
+2020-03-10 16:04:00,184 [10] DEBUG DAL.MyDBContext - EF执行SQL:SELECT
+`Extent1`.`Id`, 
+`Extent1`.`Name`, 
+`Extent1`.`Password`, 
+`Extent1`.`Height`, 
+`Extent1`.`CreateTime`, 
+`Extent1`.`IsDeleted`, 
+`Extent1`.`Describe`
+FROM `t_users` AS `Extent1`
+ WHERE ((`Extent1`.`Id` = @p__linq__0) AND (@p__linq__0 IS NOT NULL)) AND (0 = `Extent1`.`IsDeleted`) LIMIT 2
+2020-03-10 16:04:00,184 [10] DEBUG DAL.MyDBContext - EF执行SQL:
+
+2020-03-10 16:04:00,184 [10] DEBUG DAL.MyDBContext - EF执行SQL:-- p__linq__0: '3f632043273f4965ab6e484c127feefd' (Type = String, Size = 32)
+
+2020-03-10 16:04:00,184 [10] DEBUG DAL.MyDBContext - EF执行SQL:-- Executing at 2020/3/10 16:04:00 +08:00
+
+2020-03-10 16:04:00,185 [10] DEBUG DAL.MyDBContext - EF执行SQL:-- Completed in 0 ms with result: EFMySqlDataReader
+
+2020-03-10 16:04:00,185 [10] DEBUG DAL.MyDBContext - EF执行SQL:
+
+2020-03-10 16:04:00,185 [10] DEBUG MyWork.App_Start.Filter.ActionFilter - admin正在执行User控制器的Add方法
+2020-03-10 16:04:00,185 [10] DEBUG MyWork.App_Start.Filter.ActionFilter - admin执行了User控制器的Add方法
+2020-03-10 16:04:37,744 [14] DEBUG MyWork.App_Start.Filter.ActionFilter - admin正在执行NoteManage控制器的Index方法
+2020-03-10 16:04:37,744 [14] DEBUG MyWork.App_Start.Filter.ActionFilter - admin执行了NoteManage控制器的Index方法
+2020-03-10 16:06:47,441 [6] DEBUG MyWork.App_Start.Filter.ActionFilter - 未知姓名的人执行了Home控制器的Index方法
+2020-03-10 16:06:47,460 [6] DEBUG MyWork.App_Start.Filter.ActionFilter - 未知姓名的人执行了Home控制器的Index方法
+2020-03-10 16:06:57,999 [6] ERROR MyWork.App_Start.Filter.ExceptionFilter - 出现未处理异常
+System.InvalidOperationException: 未找到视图“Login”或其母版视图，或没有视图引擎支持搜索的位置。搜索了以下位置: 
+~/Views/User/Login.aspx
+~/Views/User/Login.ascx
+~/Views/Shared/Login.aspx
+~/Views/Shared/Login.ascx
+~/Views/User/Login.cshtml
+~/Views/User/Login.vbhtml
+~/Views/Shared/Login.cshtml
+~/Views/Shared/Login.vbhtml
+   在 System.Web.Mvc.ViewResult.FindView(ControllerContext context)
+   在 System.Web.Mvc.ViewResultBase.ExecuteResult(ControllerContext context)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionResult(ControllerContext controllerContext, ActionResult actionResult)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionResultWithFilters(ControllerContext controllerContext, IList`1 filters, ActionResult actionResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass3_6.<BeginInvokeAction>b__3()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass3_1.<BeginInvokeAction>b__5(IAsyncResult asyncResult)
+2020-03-10 16:07:02,557 [13] DEBUG MyWork.App_Start.Filter.ActionFilter - 未知姓名的人执行了General控制器的Error方法
+2020-03-10 16:07:02,557 [13] DEBUG MyWork.App_Start.Filter.ActionFilter - 未知姓名的人执行了General控制器的Error方法
+2020-03-10 16:07:04,981 [13] DEBUG MyWork.App_Start.Filter.ActionFilter - 未知姓名的人执行了Home控制器的Index方法
+2020-03-10 16:07:04,981 [13] DEBUG MyWork.App_Start.Filter.ActionFilter - 未知姓名的人执行了Home控制器的Index方法
+2020-03-10 16:07:25,942 [6] DEBUG MyWork.App_Start.Filter.ActionFilter - 未知姓名的人执行了NoteManage控制器的Login方法
+2020-03-10 16:07:25,963 [6] DEBUG MyWork.App_Start.Filter.ActionFilter - 未知姓名的人执行了NoteManage控制器的Login方法
+2020-03-10 16:07:34,102 [6] DEBUG DAL.MyDBContext - EF执行SQL:SELECT
+`GroupBy1`.`A1` AS `C1`
+FROM (SELECT
+COUNT(1) AS `A1`
+FROM `__MigrationHistory` AS `Extent1`) AS `GroupBy1`
+2020-03-10 16:07:34,102 [6] DEBUG DAL.MyDBContext - EF执行SQL:
+
+2020-03-10 16:07:34,108 [6] DEBUG DAL.MyDBContext - EF执行SQL:-- Executing at 2020/3/10 16:07:34 +08:00
+
+2020-03-10 16:07:34,111 [6] DEBUG DAL.MyDBContext - EF执行SQL:-- Failed in 1 ms with error: Table 'notemanage_new.__migrationhistory' doesn't exist
+
+2020-03-10 16:07:34,111 [6] DEBUG DAL.MyDBContext - EF执行SQL:
+
+2020-03-10 16:07:34,176 [6] DEBUG DAL.MyDBContext - EF执行SQL:SELECT
+`GroupBy1`.`A1` AS `C1`
+FROM (SELECT
+COUNT(1) AS `A1`
+FROM `__MigrationHistory` AS `Extent1`) AS `GroupBy1`
+2020-03-10 16:07:34,176 [6] DEBUG DAL.MyDBContext - EF执行SQL:
+
+2020-03-10 16:07:34,176 [6] DEBUG DAL.MyDBContext - EF执行SQL:-- Executing at 2020/3/10 16:07:34 +08:00
+
+2020-03-10 16:07:34,177 [6] DEBUG DAL.MyDBContext - EF执行SQL:-- Failed in 0 ms with error: Table 'notemanage_new.__migrationhistory' doesn't exist
+
+2020-03-10 16:07:34,177 [6] DEBUG DAL.MyDBContext - EF执行SQL:
+
+2020-03-10 16:07:34,526 [6] DEBUG DAL.MyDBContext - EF执行SQL:SELECT
+`Extent1`.`Id`, 
+`Extent1`.`Name`, 
+`Extent1`.`Password`, 
+`Extent1`.`Height`, 
+`Extent1`.`CreateTime`, 
+`Extent1`.`IsDeleted`, 
+`Extent1`.`Describe`
+FROM `t_users` AS `Extent1`
+ WHERE ((((`Extent1`.`Name` = @p__linq__0) AND (NOT ((`Extent1`.`Name` IS  NULL) OR (@p__linq__0 IS  NULL)))) OR ((`Extent1`.`Name` IS  NULL) AND (@p__linq__0 IS  NULL))) AND (((`Extent1`.`Password` = @p__linq__1) AND (NOT ((`Extent1`.`Password` IS  NULL) OR (@p__linq__1 IS  NULL)))) OR ((`Extent1`.`Password` IS  NULL) AND (@p__linq__1 IS  NULL)))) AND (0 = `Extent1`.`IsDeleted`) LIMIT 2
+2020-03-10 16:07:34,526 [6] DEBUG DAL.MyDBContext - EF执行SQL:
+
+2020-03-10 16:07:34,527 [6] DEBUG DAL.MyDBContext - EF执行SQL:-- p__linq__0: 'admin' (Type = String, Size = 5)
+
+2020-03-10 16:07:34,527 [6] DEBUG DAL.MyDBContext - EF执行SQL:-- p__linq__1: 'xxxx' (Type = String, Size = 4)
+
+2020-03-10 16:07:34,527 [6] DEBUG DAL.MyDBContext - EF执行SQL:-- Executing asynchronously at 2020/3/10 16:07:34 +08:00
+
+2020-03-10 16:07:34,543 [6] DEBUG DAL.MyDBContext - EF执行SQL:-- Completed in 15 ms with result: EFMySqlDataReader
+
+2020-03-10 16:07:34,543 [6] DEBUG DAL.MyDBContext - EF执行SQL:
+
+2020-03-10 16:07:34,721 [7] DEBUG MyWork.App_Start.Filter.ActionFilter - admin正在执行NoteManage控制器的Index方法
+2020-03-10 16:07:34,721 [7] DEBUG MyWork.App_Start.Filter.ActionFilter - admin执行了NoteManage控制器的Index方法
+2020-03-10 16:07:37,886 [6] DEBUG DAL.MyDBContext - EF执行SQL:SELECT
+`Extent1`.`Id`, 
+`Extent1`.`Name`, 
+`Extent1`.`Password`, 
+`Extent1`.`Height`, 
+`Extent1`.`CreateTime`, 
+`Extent1`.`IsDeleted`, 
+`Extent1`.`Describe`
+FROM `t_users` AS `Extent1`
+ WHERE ((`Extent1`.`Id` = @p__linq__0) AND (@p__linq__0 IS NOT NULL)) AND (0 = `Extent1`.`IsDeleted`) LIMIT 2
+2020-03-10 16:07:37,886 [6] DEBUG DAL.MyDBContext - EF执行SQL:
+
+2020-03-10 16:07:37,886 [6] DEBUG DAL.MyDBContext - EF执行SQL:-- p__linq__0: '3f632043273f4965ab6e484c127feefd' (Type = String, Size = 32)
+
+2020-03-10 16:07:37,886 [6] DEBUG DAL.MyDBContext - EF执行SQL:-- Executing at 2020/3/10 16:07:37 +08:00
+
+2020-03-10 16:07:37,887 [6] DEBUG DAL.MyDBContext - EF执行SQL:-- Completed in 0 ms with result: EFMySqlDataReader
+
+2020-03-10 16:07:37,887 [6] DEBUG DAL.MyDBContext - EF执行SQL:
+
+2020-03-10 16:07:38,057 [6] DEBUG DAL.MyDBContext - EF执行SQL:SELECT
+`Extent2`.`Id`, 
+`Extent2`.`Name`, 
+`Extent2`.`CreateTime`, 
+`Extent2`.`IsDeleted`, 
+`Extent2`.`Describe`
+FROM `t_userrolerelations` AS `Extent1` INNER JOIN `t_roles` AS `Extent2` ON `Extent1`.`Role_Id` = `Extent2`.`Id`
+ WHERE `Extent1`.`User_Id` = @EntityKeyValue1
+2020-03-10 16:07:38,058 [6] DEBUG DAL.MyDBContext - EF执行SQL:
+
+2020-03-10 16:07:38,058 [6] DEBUG DAL.MyDBContext - EF执行SQL:-- EntityKeyValue1: '3f632043273f4965ab6e484c127feefd' (Type = String, Size = 128)
+
+2020-03-10 16:07:38,058 [6] DEBUG DAL.MyDBContext - EF执行SQL:-- Executing at 2020/3/10 16:07:38 +08:00
+
+2020-03-10 16:07:38,058 [6] DEBUG DAL.MyDBContext - EF执行SQL:-- Completed in 0 ms with result: EFMySqlDataReader
+
+2020-03-10 16:07:38,058 [6] DEBUG DAL.MyDBContext - EF执行SQL:
+
+2020-03-10 16:07:38,082 [6] DEBUG DAL.MyDBContext - EF执行SQL:SELECT
+`Extent2`.`Id`, 
+`Extent2`.`ModuleId`, 
+`Extent2`.`ModuleName`, 
+`Extent2`.`Describe`, 
+`Extent2`.`ControllerName`, 
+`Extent2`.`ActionName`, 
+`Extent2`.`CreateTime`, 
+`Extent2`.`IsDeleted`
+FROM `t_usermodulerelations` AS `Extent1` INNER JOIN `t_modules` AS `Extent2` ON `Extent1`.`Module_Id` = `Extent2`.`Id`
+ WHERE `Extent1`.`User_Id` = @EntityKeyValue1
+2020-03-10 16:07:38,083 [6] DEBUG DAL.MyDBContext - EF执行SQL:
+
+2020-03-10 16:07:38,083 [6] DEBUG DAL.MyDBContext - EF执行SQL:-- EntityKeyValue1: '3f632043273f4965ab6e484c127feefd' (Type = String, Size = 128)
+
+2020-03-10 16:07:38,083 [6] DEBUG DAL.MyDBContext - EF执行SQL:-- Executing at 2020/3/10 16:07:38 +08:00
+
+2020-03-10 16:07:38,083 [6] DEBUG DAL.MyDBContext - EF执行SQL:-- Completed in 0 ms with result: EFMySqlDataReader
+
+2020-03-10 16:07:38,083 [6] DEBUG DAL.MyDBContext - EF执行SQL:
+
+2020-03-10 16:07:38,084 [6] DEBUG MyWork.App_Start.Filter.ActionFilter - admin正在执行User控制器的Add方法
+2020-03-10 16:07:38,084 [6] DEBUG MyWork.App_Start.Filter.ActionFilter - admin执行了User控制器的Add方法
+2020-03-10 16:07:46,820 [14] DEBUG MyWork.App_Start.Filter.ActionFilter - admin正在执行NoteManage控制器的Index方法
+2020-03-10 16:07:46,821 [14] DEBUG MyWork.App_Start.Filter.ActionFilter - admin执行了NoteManage控制器的Index方法
+2020-03-10 16:11:36,708 [6] DEBUG MyWork.App_Start.Filter.ActionFilter - 未知姓名的人执行了NoteManage控制器的Login方法
+2020-03-10 16:11:36,727 [6] DEBUG MyWork.App_Start.Filter.ActionFilter - 未知姓名的人执行了NoteManage控制器的Login方法
+2020-03-10 16:11:43,872 [7] DEBUG DAL.MyDBContext - EF执行SQL:SELECT
+`GroupBy1`.`A1` AS `C1`
+FROM (SELECT
+COUNT(1) AS `A1`
+FROM `__MigrationHistory` AS `Extent1`) AS `GroupBy1`
+2020-03-10 16:11:43,872 [7] DEBUG DAL.MyDBContext - EF执行SQL:
+
+2020-03-10 16:11:43,877 [7] DEBUG DAL.MyDBContext - EF执行SQL:-- Executing at 2020/3/10 16:11:43 +08:00
+
+2020-03-10 16:11:43,881 [7] DEBUG DAL.MyDBContext - EF执行SQL:-- Failed in 2 ms with error: Table 'notemanage_new.__migrationhistory' doesn't exist
+
+2020-03-10 16:11:43,881 [7] DEBUG DAL.MyDBContext - EF执行SQL:
+
+2020-03-10 16:11:43,948 [7] DEBUG DAL.MyDBContext - EF执行SQL:SELECT
+`GroupBy1`.`A1` AS `C1`
+FROM (SELECT
+COUNT(1) AS `A1`
+FROM `__MigrationHistory` AS `Extent1`) AS `GroupBy1`
+2020-03-10 16:11:43,948 [7] DEBUG DAL.MyDBContext - EF执行SQL:
+
+2020-03-10 16:11:43,948 [7] DEBUG DAL.MyDBContext - EF执行SQL:-- Executing at 2020/3/10 16:11:43 +08:00
+
+2020-03-10 16:11:43,949 [7] DEBUG DAL.MyDBContext - EF执行SQL:-- Failed in 0 ms with error: Table 'notemanage_new.__migrationhistory' doesn't exist
+
+2020-03-10 16:11:43,949 [7] DEBUG DAL.MyDBContext - EF执行SQL:
+
+2020-03-10 16:11:44,314 [7] DEBUG DAL.MyDBContext - EF执行SQL:SELECT
+`Extent1`.`Id`, 
+`Extent1`.`Name`, 
+`Extent1`.`Password`, 
+`Extent1`.`Height`, 
+`Extent1`.`CreateTime`, 
+`Extent1`.`IsDeleted`, 
+`Extent1`.`Describe`
+FROM `t_users` AS `Extent1`
+ WHERE ((((`Extent1`.`Name` = @p__linq__0) AND (NOT ((`Extent1`.`Name` IS  NULL) OR (@p__linq__0 IS  NULL)))) OR ((`Extent1`.`Name` IS  NULL) AND (@p__linq__0 IS  NULL))) AND (((`Extent1`.`Password` = @p__linq__1) AND (NOT ((`Extent1`.`Password` IS  NULL) OR (@p__linq__1 IS  NULL)))) OR ((`Extent1`.`Password` IS  NULL) AND (@p__linq__1 IS  NULL)))) AND (0 = `Extent1`.`IsDeleted`) LIMIT 2
+2020-03-10 16:11:44,314 [7] DEBUG DAL.MyDBContext - EF执行SQL:
+
+2020-03-10 16:11:44,315 [7] DEBUG DAL.MyDBContext - EF执行SQL:-- p__linq__0: 'admin' (Type = String, Size = 5)
+
+2020-03-10 16:11:44,315 [7] DEBUG DAL.MyDBContext - EF执行SQL:-- p__linq__1: 'root123abc' (Type = String, Size = 10)
+
+2020-03-10 16:11:44,315 [7] DEBUG DAL.MyDBContext - EF执行SQL:-- Executing asynchronously at 2020/3/10 16:11:44 +08:00
+
+2020-03-10 16:11:44,319 [7] DEBUG DAL.MyDBContext - EF执行SQL:-- Completed in 3 ms with result: EFMySqlDataReader
+
+2020-03-10 16:11:44,319 [7] DEBUG DAL.MyDBContext - EF执行SQL:
+
+2020-03-10 16:11:48,577 [12] DEBUG DAL.MyDBContext - EF执行SQL:SELECT
+`Extent1`.`Id`, 
+`Extent1`.`Name`, 
+`Extent1`.`Password`, 
+`Extent1`.`Height`, 
+`Extent1`.`CreateTime`, 
+`Extent1`.`IsDeleted`, 
+`Extent1`.`Describe`
+FROM `t_users` AS `Extent1`
+ WHERE ((((`Extent1`.`Name` = @p__linq__0) AND (NOT ((`Extent1`.`Name` IS  NULL) OR (@p__linq__0 IS  NULL)))) OR ((`Extent1`.`Name` IS  NULL) AND (@p__linq__0 IS  NULL))) AND (((`Extent1`.`Password` = @p__linq__1) AND (NOT ((`Extent1`.`Password` IS  NULL) OR (@p__linq__1 IS  NULL)))) OR ((`Extent1`.`Password` IS  NULL) AND (@p__linq__1 IS  NULL)))) AND (0 = `Extent1`.`IsDeleted`) LIMIT 2
+2020-03-10 16:11:48,577 [12] DEBUG DAL.MyDBContext - EF执行SQL:
+
+2020-03-10 16:11:48,577 [12] DEBUG DAL.MyDBContext - EF执行SQL:-- p__linq__0: 'admin' (Type = String, Size = 5)
+
+2020-03-10 16:11:48,577 [12] DEBUG DAL.MyDBContext - EF执行SQL:-- p__linq__1: 'xxxx' (Type = String, Size = 4)
+
+2020-03-10 16:11:48,577 [12] DEBUG DAL.MyDBContext - EF执行SQL:-- Executing asynchronously at 2020/3/10 16:11:48 +08:00
+
+2020-03-10 16:11:48,578 [12] DEBUG DAL.MyDBContext - EF执行SQL:-- Completed in 0 ms with result: EFMySqlDataReader
+
+2020-03-10 16:11:48,578 [12] DEBUG DAL.MyDBContext - EF执行SQL:
+
+2020-03-10 16:11:48,680 [11] DEBUG MyWork.App_Start.Filter.ActionFilter - admin正在执行NoteManage控制器的Index方法
+2020-03-10 16:11:48,680 [11] DEBUG MyWork.App_Start.Filter.ActionFilter - admin执行了NoteManage控制器的Index方法
+2020-03-10 16:11:52,626 [12] DEBUG DAL.MyDBContext - EF执行SQL:SELECT
+`Extent1`.`Id`, 
+`Extent1`.`Name`, 
+`Extent1`.`Password`, 
+`Extent1`.`Height`, 
+`Extent1`.`CreateTime`, 
+`Extent1`.`IsDeleted`, 
+`Extent1`.`Describe`
+FROM `t_users` AS `Extent1`
+ WHERE ((`Extent1`.`Id` = @p__linq__0) AND (@p__linq__0 IS NOT NULL)) AND (0 = `Extent1`.`IsDeleted`) LIMIT 2
+2020-03-10 16:11:52,626 [12] DEBUG DAL.MyDBContext - EF执行SQL:
+
+2020-03-10 16:11:52,626 [12] DEBUG DAL.MyDBContext - EF执行SQL:-- p__linq__0: '3f632043273f4965ab6e484c127feefd' (Type = String, Size = 32)
+
+2020-03-10 16:11:52,626 [12] DEBUG DAL.MyDBContext - EF执行SQL:-- Executing at 2020/3/10 16:11:52 +08:00
+
+2020-03-10 16:11:52,627 [12] DEBUG DAL.MyDBContext - EF执行SQL:-- Completed in 0 ms with result: EFMySqlDataReader
+
+2020-03-10 16:11:52,627 [12] DEBUG DAL.MyDBContext - EF执行SQL:
+
+2020-03-10 16:11:52,746 [12] DEBUG DAL.MyDBContext - EF执行SQL:SELECT
+`Extent2`.`Id`, 
+`Extent2`.`Name`, 
+`Extent2`.`CreateTime`, 
+`Extent2`.`IsDeleted`, 
+`Extent2`.`Describe`
+FROM `t_userrolerelations` AS `Extent1` INNER JOIN `t_roles` AS `Extent2` ON `Extent1`.`Role_Id` = `Extent2`.`Id`
+ WHERE `Extent1`.`User_Id` = @EntityKeyValue1
+2020-03-10 16:11:52,746 [12] DEBUG DAL.MyDBContext - EF执行SQL:
+
+2020-03-10 16:11:52,746 [12] DEBUG DAL.MyDBContext - EF执行SQL:-- EntityKeyValue1: '3f632043273f4965ab6e484c127feefd' (Type = String, Size = 128)
+
+2020-03-10 16:11:52,746 [12] DEBUG DAL.MyDBContext - EF执行SQL:-- Executing at 2020/3/10 16:11:52 +08:00
+
+2020-03-10 16:11:52,747 [12] DEBUG DAL.MyDBContext - EF执行SQL:-- Completed in 0 ms with result: EFMySqlDataReader
+
+2020-03-10 16:11:52,747 [12] DEBUG DAL.MyDBContext - EF执行SQL:
+
+2020-03-10 16:11:52,770 [12] DEBUG DAL.MyDBContext - EF执行SQL:SELECT
+`Extent2`.`Id`, 
+`Extent2`.`ModuleId`, 
+`Extent2`.`ModuleName`, 
+`Extent2`.`Describe`, 
+`Extent2`.`ControllerName`, 
+`Extent2`.`ActionName`, 
+`Extent2`.`CreateTime`, 
+`Extent2`.`IsDeleted`
+FROM `t_usermodulerelations` AS `Extent1` INNER JOIN `t_modules` AS `Extent2` ON `Extent1`.`Module_Id` = `Extent2`.`Id`
+ WHERE `Extent1`.`User_Id` = @EntityKeyValue1
+2020-03-10 16:11:52,770 [12] DEBUG DAL.MyDBContext - EF执行SQL:
+
+2020-03-10 16:11:52,770 [12] DEBUG DAL.MyDBContext - EF执行SQL:-- EntityKeyValue1: '3f632043273f4965ab6e484c127feefd' (Type = String, Size = 128)
+
+2020-03-10 16:11:52,770 [12] DEBUG DAL.MyDBContext - EF执行SQL:-- Executing at 2020/3/10 16:11:52 +08:00
+
+2020-03-10 16:11:52,771 [12] DEBUG DAL.MyDBContext - EF执行SQL:-- Completed in 0 ms with result: EFMySqlDataReader
+
+2020-03-10 16:11:52,771 [12] DEBUG DAL.MyDBContext - EF执行SQL:
+
+2020-03-10 16:11:52,771 [12] DEBUG MyWork.App_Start.Filter.ActionFilter - admin正在执行User控制器的Add方法
+2020-03-10 16:11:57,467 [12] DEBUG MyWork.App_Start.Filter.ActionFilter - admin执行了User控制器的Add方法
+2020-03-10 16:12:30,069 [12] DEBUG MyWork.App_Start.Filter.ActionFilter - admin正在执行NoteManage控制器的Index方法
+2020-03-10 16:12:30,069 [12] DEBUG MyWork.App_Start.Filter.ActionFilter - admin执行了NoteManage控制器的Index方法

@@ -1,0 +1,118 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>歌手分类</title>
+    <link rel="stylesheet" href="layui/css/layui.css" media="all">
+    <script src="Jquery/jquery-3.3.1.js"></script>
+    <script>
+        $(function () {
+            var FirstLetter = "全部";
+            var Country = "全部";
+            var Sex = "全部";
+            var Style = "全部";
+            $("#conditions table tr td a").each(function () {
+                $(this).click(function () {
+                    var classname = this.className;
+                    var value = $(this).text();
+                    if (classname.includes("FirstLetter")) {
+                        FirstLetter = value;
+                    }
+                    if (classname.includes("Country")) {
+                        Country = value;
+                    }
+                    if (classname.includes("Sex")) {
+                        Sex = value;
+                    }
+                    if (classname.includes("Style")) {
+                        Style = value;
+                    }
+                    $.ajax({
+                        url: "/Singer/SingerLists",
+                        type: "get",
+                        data: { Country: Country, FirstLetter: FirstLetter, Sex: Sex, Style: Style },
+                        dataType: "json",
+                        success: function (data) {
+                            $("#singershow table").html('');
+                            $.each(data, function (i, item) {
+                                if ((i+1) % 10 == 0) {
+                                    var rows = "<tr>" + "<td class='singerselect'>" + item.Name + "</td>" + "</tr>";
+                                    $('#singershow table').append(rows);
+                                }
+                                else {
+                                    var rows = "<td class='singerselect'>" + item.Name + "</td>";
+                                    $('#singershow table').append(rows);
+                                }
+
+                            });
+                            $(".singerselect").each(function () {
+                                $(this).click(function () {
+                                    var name = $(this).text();
+                                    ShowSingerMusics(name);
+                                });
+                            });
+                        },
+                        error: function () {
+                            window.location.href = '/General/Error';
+                        }
+                    });
+                });
+            });
+            function ShowSingerMusics(name) {
+                window.location.href = '/Singer/SingerMusics?Name=' + name;
+            };
+        });
+    </script>
+</head>
+<body>
+    <div>
+        <div id="conditions">
+            <table class="layui-table" lay-skin="nob">
+                <tbody>
+                    <tr>
+                        <td><a class="FirstLetter">全部</a></td>
+                        @{
+                            for (var i = 'A'; i <= 'Z'; i++)
+                            {
+                                <td><a class="FirstLetter">@i</a></td>
+                            }
+                        }
+                    </tr>
+                    <tr>
+                        <td><a class="Country">全部</a></td>
+                        @{
+                            foreach (var entity in Model.Countrys)
+                            {
+                                <td><a class="Country">@entity</a></td>
+                            }
+                        }
+                    </tr>
+                    <tr>
+                        <td><a class="Sex">全部</a></td>
+                        <td><a class="Sex">男</a></td>
+                        <td><a class="Sex">女</a></td>
+                        <td><a class="Sex">不男不女</a></td>
+                        <td><a class="Sex">组合</a></td>
+                    </tr>
+                    <tr>
+                        <td><a class="Style">全部</a></td>
+                        @{
+                            foreach (var entity in Model.Styles)
+                            {
+                                <td><a class="Style">@entity</a></td>
+                            }
+                        }
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div id="singershow">
+            <table class="layui-table" lay-skin="nob" id="demo" lay-filter="test"></table>
+        </div>
+    </div>
+</body>
+</html>

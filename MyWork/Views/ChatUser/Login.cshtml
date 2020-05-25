@@ -1,0 +1,64 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>聊天用户登录</title>
+    <link rel="stylesheet" href="~/layui/css/layui.css" media="all">
+    <script src="~/layui/layui.js" charset="utf-8"></script>
+    <script src="~/Jquery/jquery-3.3.1.js"></script>
+    <script>
+        layui.use('form', function () {
+            var form = layui.form;
+            //监听提交
+            form.on('submit(formDemo)', function (data) {
+                var Name = $("#Name").val();
+                var Password = $("#Password").val();
+                $.ajax({
+                    url: "/ChatUser/Login",
+                    type: "post",
+                    data: { Name: Name, Password: Password },
+                    dataType: "json",
+                    success: function (data) {
+                        if (data.State == "success") {
+                            window.location.href = '/Chat/Index?ChatUserName=' + data.Name;
+                        }
+                        else {
+                            alert(data.Message);
+                        }
+                    },
+                    error: function () {
+                        window.location.href = '/General/Error';
+                    }
+                });
+                return false;
+            });
+        });
+    </script>
+</head>
+<body>
+    <form class="layui-form">
+        <div class="layui-form-item">
+            <label class="layui-form-label">聊天名字：</label>
+            <div class="layui-input-block">
+                <input type="text" name="Name" id="Name" required lay-verify="required" placeholder="请输入聊天名字" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item layui-form-text">
+            <label class="layui-form-label">聊天密码：</label>
+            <div class="layui-input-block">
+                <input type="password" name="Password" id="Password" required lay-verify="required" placeholder="请输入聊天密码" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button class="layui-btn" lay-submit lay-filter="formDemo">登录</button>
+                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+            </div>
+        </div>
+    </form>
+</body>
+</html>

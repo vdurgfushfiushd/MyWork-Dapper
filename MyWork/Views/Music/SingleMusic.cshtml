@@ -1,0 +1,97 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>听音乐</title>
+    <link rel="stylesheet" href="~/layui/css/layui.css" media="all">
+    <script src="~/layui/layui.js" charset="utf-8"></script>
+    <script src="~/Jquery/jquery-3.3.1.js"></script>
+    <script>
+        $(function () {
+            function CommentsLoad() {
+                $("#LAY_demo2").html('');
+                layui.use('flow', function () {
+                    var flow = layui.flow;
+                    flow.load({
+                        elem: '#LAY_demo2' //流加载容器
+                        , scrollElem: '#LAY_demo2' //滚动条所在元素，一般不用填，此处只是演示需要。
+                        , isAuto: false
+                        , isLazyimg: true
+                        , done: function (page, next) { //加载下一页
+                            var lis = [];
+                            //以jQuery的Ajax请求为例，请求下一页数据（注意：page是从2开始返回）
+                            $.get('/Comments/GetAll?page=' + page, function (res) {
+                                //假设你的列表返回在data集合中
+                                layui.each(res, function (index, item) {
+                                    lis.push('<li>' + '<div><p>' + item.UserName + '</p><p>' + item.CommentDetail + '</p></div> ' + '</li>');
+                                });
+                                //执行下一页渲染，第二参数为：满足“加载更多”的条件，即后面仍有分页
+                                //pages为Ajax返回的总页数，只有当前页小于总页数的情况下，才会继续出现加载更多
+                                next(lis.join(''), page < Object.keys(res).length);
+                            });
+                        },
+                    });
+                });
+            };
+            CommentsLoad();
+            $("#btn_sub").click(function () {
+                var UserName = "fangjia";
+                var MusicName = "@Model.Name";
+                var CommentDetail = $("#CommentDetail").val();
+                var User_Id = 111;
+                var Music_Id = parseInt(@Model.Id);
+                $.ajax({
+                    url: "/Comments/Add",
+                    type: "post",
+                    data: { UserName: UserName, MusicName: MusicName, CommentDetail: CommentDetail, User_Id: User_Id, Music_Id: Music_Id },
+                    dataType: "json",
+                    success: function (data) {
+                        if (data.State == "success") {
+                            CommentsLoad();
+                            alert("添加评论成功");
+
+                        } else {
+                            window.location.href = '/General/Error';
+                        }
+                    },
+                    error: function () {
+                        window.location.href = '/General/Error';
+                    }
+                });
+                return false;
+            });
+        });
+    </script>
+</head>
+<body>
+    <div>
+        <p id="MusicName">歌名:@Model.Name</p>
+        <p id="MusicLyrics">歌词:@Model.Lyrics</p>
+        <audio src="@Model.Url" controls="controls"></audio>
+    </div>
+    <div class="layui-form-item layui-form-text">
+        <label class="layui-form-label">评论:</label>
+        <div class="layui-input-block">
+            <textarea placeholder="请输入内容" class="layui-textarea" id="CommentDetail"></textarea>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn" lay-filter="formDemo" id="btn_sub">提交评论</button>
+            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+        </div>
+    </div>
+    <div>
+        <fieldset class="layui-elem-field layui-field-title" style="margin-top: 50px;">
+            <legend>所有评论</legend>
+        </fieldset>
+        <ul class="flow-default" id="LAY_demo2"></ul>
+    </div>
+</body>
+</html>
+
+

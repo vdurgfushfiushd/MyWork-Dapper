@@ -1,0 +1,104 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>音乐新增</title>
+    <link rel="stylesheet" href="~/layui/css/layui.css" media="all">
+    <script src="~/layui/layui.js" charset="utf-8"></script>
+    <script src="~/Jquery/jquery-3.3.1.js"></script>
+</head>
+<body>
+    <form class="layui-form" enctype="multipart/form-data">
+        <div class="layui-form-item">
+            <label class="layui-form-label">音乐名字：</label>
+            <div class="layui-input-block">
+                <input type="text" name="Name" id="Name" required lay-verify="required" placeholder="请输入标题" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">音乐语种：</label>
+            <div class="layui-input-block">
+                <input type="text" name="Language" id="Language" required lay-verify="required" placeholder="请输入标题" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">音乐风格：</label>
+            <div class="layui-input-block">
+                <input type="text" name="Style" id="Style" required lay-verify="required" placeholder="请输入标题" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">音乐主题：</label>
+            <div class="layui-input-block">
+                <input type="text" name="Theme" id="Theme" required lay-verify="required" placeholder="请输入标题" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item layui-form-text">
+            <label class="layui-form-label">演唱歌手：</label>
+            <div class="layui-input-block">
+                <textarea placeholder="请输入内容" class="layui-textarea" name="Singer" id="Singer"></textarea>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-upload">
+                <label class="layui-form-label">对应音乐：</label>
+                <button type="button" class="layui-btn" id="test1">选择音乐</button>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+            </div>
+        </div>
+    </form>
+    <script>
+        var MusicUrl;
+        layui.use('upload', function () {
+            var upload = layui.upload;
+            upload.render({
+                elem: '#test1'
+                , url: '/Music/Upload'
+                , accept: 'audio' //音频
+                , done: function (res) {
+                    MusicUrl=res.Data;
+                },
+            });
+        });
+        layui.use('form', function () {
+            var form = layui.form;
+            //监听提交
+            form.on('submit(formDemo)', function (data) {
+                var Name = $("#Name").val();
+                var Language = $("#Language").val();
+                var Style = $("#Style").val();
+                var Theme = $("#Theme").val();
+                var Singer = $("#Singer").val();
+                alert(MusicUrl)
+                $.ajax({
+                    url: "/Music/Add",
+                    type: "post",
+                    data: { Name: Name, Singer: Singer, Language: Language, Style: Style, Theme: Theme, Url: MusicUrl },
+                    dataType: "json",
+                    success: function (data) {
+                        if (data.State == "success") {
+                            window.location.href = '/Music/Index';
+                        }
+                        else {
+                            alert(data.Message);
+                        }
+                    },
+                    error: function () {
+                        window.location.href = '/General/Error';
+                    }
+                });
+                return false;
+            });
+        });
+    </script>
+</body>
+</html>

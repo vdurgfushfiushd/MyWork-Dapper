@@ -1,0 +1,72 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>音乐编辑</title>
+    <link rel="stylesheet" href="~/layui/css/layui.css" media="all">
+    <script src="~/layui/layui.js" charset="utf-8"></script>
+    <script src="~/Jquery/jquery-3.3.1.js"></script>
+</head>
+<body>
+    <form class="layui-form">
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <input type="hidden" name="Id" id="Id" value=@Model.Id required lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
+                <input type="hidden" name="Singer_Id" id="Singer_Id" value=@Model.Singer_Id required lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">歌曲名字：</label>
+            <div class="layui-input-block">
+                <input type="text" name="Name" id="Name" value=@Model.Name required lay-verify="required" placeholder="请输入歌曲名" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item layui-form-text">
+            <label class="layui-form-label">歌曲地址：</label>
+            <div class="layui-input-block">
+                <input type="text" name="Url" id="Url" value=@Model.Url required lay-verify="required" placeholder="请输入歌曲地址" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button class="layui-btn" lay-submit lay-filter="confirm">修改</button>
+            </div>
+        </div>
+    </form>
+    <script>
+        layui.use('form', function () {
+            var form = layui.form;
+            //监听提交
+            form.on('submit(confirm)', function (obj) {
+                var Singer_Id = $("#Singer_Id").val();
+                var Id = $("#Id").val();
+                var Name = $("#Name").val();
+                var Url = $("#Url").val();
+                $.ajax({
+                    url: "/Music/UpdateAsync",
+                    type: "Post",
+                    data: { Name: Name, Url: Url, Id: Id, Singer_Id: Singer_Id },
+                    dataType: "json",
+                    success: function (data) {
+                        if (data.State == "success") {
+                            //window.location.href = '/Music/Index';
+                            alert("修改成功");
+                        }
+                        else {
+                            alert(data.Message);
+                        }
+                    },
+                    error: function () {
+                        window.location.href = '/General/Error';
+                    }
+                });
+                return false;
+            });
+        });
+    </script>
+</body>
+</html>

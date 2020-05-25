@@ -1,0 +1,87 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>聊天用户新增</title>
+    <script src="~/Scripts/jquery-3.3.1.js"></script>
+    <script src="~/Scripts/jquery.signalR-2.2.2.js"></script>
+    <script src="~/Signalr/hubs" type="text/javascript"></script>
+    <link rel="stylesheet" href="~/layui/css/layui.css" media="all">
+    <script src="~/layui/layui.js" charset="utf-8"></script>
+    <script type="text/javascript">
+        $(function () {
+            var chatUserclient = $.connection.ChatUserHub.client;
+            var serverclient = $.connection.ChatUserHub.server;
+            chatUserclient.onGetCurrentConnectionId = function (msg)//监听来自服务器端对 onMessage的调用。注意是client.
+            {
+                $("#ConnectionId").val(msg);
+            }//要在hub.start()之前执行
+            $.connection.hub.start().done(function () {
+                serverclient.getCurrentConnectionId();
+            }).fail(function () {
+                alert("连接testHub失败");
+            });
+        });
+    </script>
+</head>
+<body>
+    <form class="layui-form">
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <input type="hidden" name="ConnectionId" id="ConnectionId" />
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">聊天名字：</label>
+            <div class="layui-input-block">
+                <input type="text" name="ChatName" id="ChatName" required lay-verify="required" placeholder="请输入聊天名字" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item layui-form-text">
+            <label class="layui-form-label">聊天密码：</label>
+            <div class="layui-input-block">
+                <input type="password" name="Password" id="Password" required lay-verify="required" placeholder="请输入密码" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+            </div>
+        </div>
+    </form>
+    <script>
+        layui.use('form', function () {
+            var form = layui.form;
+            //监听提交
+            form.on('submit(formDemo)', function (data) {
+                var ConnectionId = $("#ConnectionId").val();
+                var Name = $("#ChatName").val();
+                var Password = $("#Password").val();
+                $.ajax({
+                    url: "/ChatUser/Add",
+                    type: "post",
+                    data: { ConnectionId:ConnectionId,Name: Name, Password: Password },
+                    dataType: "json",
+                    success: function (data) {
+                        if (data.State == "success") {
+                            alert("聊天用户新增成功");
+                        }
+                        else {
+                            alert("聊天用户新增失败");
+                        }
+                    },
+                    error: function () {
+                        window.location.href = '/General/Error';
+                    }
+                });
+                return false;
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,110 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>音乐管理</title>
+    <link rel="stylesheet" href="~/layui/css/layui.css" media="all">
+    <script src="~/Jquery/jquery-3.3.1.js"></script>
+    <script>
+        $(function () {
+            var Language = "全部";
+            var Theme = "全部";
+            var Style = "全部";
+            $("#conditions table tr td a").each(function () {
+                $(this).click(function () {
+                    var classname = this.className;
+                    var value = $(this).text();
+                    if (classname.includes("Theme")) {
+                        Theme = value;
+                    }
+                    if (classname.includes("Language")) {
+                        Language = value;
+                    }
+                    if (classname.includes("Style")) {
+                        Style = value;
+                    }
+                    $.ajax({
+                        url: "/Music/MusicLists",
+                        type: "get",
+                        data: { Language: Language, Theme: Theme, Style: Style },
+                        dataType: "json",
+                        success: function (data) {
+                            $("#musicshow table").html('');
+                            $.each(data, function (i, item) {
+                                if ((i + 1) % 10 == 0) {
+                                    var rows = "<tr>" + "<td class='musicselect'" + " id=" + item.Id+">" + item.Name + "</td>" + "</tr>";
+                                    $('#musicshow table').append(rows);
+                                }
+                                else {
+                                    var rows = "<td class='musicselect'" + " id=" + item.Id + ">" + item.Name + "</td>";
+                                    $('#musicshow table').append(rows);
+                                }
+
+                            });
+                            $(".musicselect").each(function () {
+                                $(this).click(function () {
+                                    var Id = $(this).attr('id');
+                                    ShowSingerMusics(Id);
+                                });
+                            });
+                        },
+                        error: function () {
+                            window.location.href = '/General/Error';
+                        }
+                    });
+                });
+            });
+            function ShowSingerMusics(Id) {
+                window.location.href = '/Music/SingleMusic?Id=' + Id;
+            };
+        });
+    </script>
+</head>
+<body>
+    <div>
+        <div id="conditions">
+            <table class="layui-table" lay-skin="nob">
+                <tbody>
+                    <tr>
+                        <td>语言:</td>
+                        <td><a class="Language">全部</a></td>
+                        @{
+                            foreach (var entity in Model.Languages)
+                            {
+                                <td><a class="Language">@entity</a></td>
+                            }
+                        }
+                    </tr>
+                    <tr>
+                        <td>主题:</td>
+                        <td><a class="Theme">全部</a></td>
+                        @{
+                            foreach (var entity in Model.Themes)
+                            {
+                                <td><a class="Theme">@entity</a></td>
+                            }
+                        }
+                    </tr>
+                    <tr>
+                        <td>风格:</td>
+                        <td><a class="Style">全部</a></td>
+                        @{
+                            foreach (var entity in Model.Styles)
+                            {
+                                <td><a class="Style">@entity</a></td>
+                            }
+                        }
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div id="musicshow">
+            <table class="layui-table" lay-skin="nob" id="demo" lay-filter="test"></table>
+        </div>
+    </div>
+</body>
+</html>

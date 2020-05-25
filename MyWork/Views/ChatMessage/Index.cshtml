@@ -1,0 +1,80 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>聊天用户首页</title>
+    <script src="~/Jquery/jquery-3.3.1.js"></script>
+    <script src="~/layui/layui.js" charset="utf-8"></script>
+    <script src="~/Jquery/jquery-3.3.1.js"></script>
+</head>
+<body>
+    <h1>聊天首页</h1>
+    <form class="layui-form">
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <input type="hidden" name="Sender" id="Sender" value=@Model.CurrentChatName required lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">联系人：</label>
+                <div class="layui-input-inline">
+                    <select name="Receivers">
+                        @{ foreach (var Receiver in Model.onlineNamelist)
+                            {
+                                <option value="">@Receiver</option>
+                            }
+                        }
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">消  息：</label>
+            <div class="layui-input-block">
+                <input type="text" name="Message" id="Message" required lay-verify="required" placeholder="请输入发送消息" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button class="layui-btn" lay-submit lay-filter="formDemo">发送</button>
+                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+            </div>
+        </div>
+    </form>
+    <script>
+        layui.use('form', function () {
+            var form = layui.form;
+            //监听提交
+            form.on('submit(formDemo)', function (data) {
+                var Sender = $("#Sender").val();
+                var Message = $("#Message").val();
+                var Receivers = $("#Receivers").val();
+                alert(ConnectionId);
+                $.ajax({
+                    url: "/ChatMessage/SendMessage",
+                    type: "post",
+                    data: { Sender: Sender, Message: Message, Receivers: Receivers },
+                    dataType: "json",
+                    success: function (data) {
+                        if (data.State == "success") {
+                            window.location.href = '/ChatUser/Index';
+                        }
+                        else {
+                            alert(data.Message);
+                        }
+                    },
+                    error: function () {
+                        window.location.href = '/General/Error';
+                    }
+                });
+                return false;
+            });
+        });
+    </script>
+</body>
+</html>

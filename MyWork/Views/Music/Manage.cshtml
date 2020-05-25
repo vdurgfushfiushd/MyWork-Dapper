@@ -1,0 +1,157 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>音乐管理</title>
+    <link rel="stylesheet" href="~/layui/css/layui.css" media="all">
+    <script src="~/layui/layui.js" charset="utf-8"></script>
+    <script src="~/Jquery/jquery-3.3.1.js"></script>
+    <!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
+    <script type="text/html" id="barDemo">
+        <a class="layui-btn layui-btn-xs" lay-event="detail">查看</a>
+        <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+        <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+    </script>
+    <script>
+        layui.use(['util', 'table'], function () {
+            var table = layui.table;
+            var util = layui.util;
+            table.render({
+                elem: '#test'
+                , url: '/Music/GetData'
+                , cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+                , page: true //开启分页
+                , parseData: function (res) {
+                    return {
+                        "code": 0,
+                        "msg": "",
+                        "count": 10,
+                        "data": res
+                    };
+                }
+                , cols: [[
+                    { field: 'Id', title: 'Id', sort: true }
+                    , { field: 'Name', title: '歌曲名' }
+                    , { field: 'Language', title: '语种' }
+                    , { field: 'Style', title: '风格' }
+                    , { field: 'Theme', title: '主题' }
+                    , { field: 'IsDeleted', title: '删除标记' }
+                    , { field: 'CreateTime', title: '创建时间', sort: true, templet: function (d) { return util.toDateString(d.commPosttime * 1000, "yyyy-MM-dd HH:mm:ss"); } } //minWidth：局部定义当前单元格的最小宽度，layui 2.2.1 新增
+                    , { field: '', title: '操作', toolbar: '#barDemo' }
+                ]]
+                , id: 'testReload'
+            });
+            table.on('tool(test)', function (obj) { //注：tool 是工具条事件名，test 是 table 原始容器的属性 lay-filter="对应的值"
+                var data = obj.data; //获得当前行数据
+                var layEvent = obj.event; //获得 lay-event 对应的值（也可以是表头的 event 参数对应的值）
+                var tr = obj.tr; //获得当前行 tr 的 DOM 对象（如果有的话）
+                //查看
+                if (layEvent === 'detail') {
+                    //do somehing
+                    location.href = "/Music/ShowUserRolePower?Id=" + data.Id;
+                }
+                //删除
+                else if (layEvent === 'del') {
+                    layer.confirm('真的删除行么', function (index) {
+                        obj.del(); //删除对应行（tr）的DOM结构，并更新缓存
+                        layer.close(index);
+                        location.href = "/Music/Delete?Id=" + data.Id;
+                    });
+                }
+                //删除
+                else if (layEvent === 'del_soft') {
+                    layer.confirm('真的删除行么', function (index) {
+                        obj.del(); //删除对应行（tr）的DOM结构，并更新缓存
+                        layer.close(index);
+                        location.href = "/Music/DeleteBySoft?Id=" + data.Id;
+                    });
+                }
+                //编辑
+                else if (layEvent === 'edit') {
+                    location.href = "/Music/Update?Id=" + data.Id;
+                }
+                else if (layEvent === 'LAYTABLE_TIPS') {
+                    layer.alert('Hi，头部工具栏扩展的右侧图标。');
+                }
+            });
+            //查询提交
+            layui.use('form', function () {
+                var form = layui.form;
+                //监听form提交
+                form.on('submit(formDemo)', function (data) {
+                    //要查询的歌曲名
+                    var Name = $('#Name').val();
+                    //要查询的主题
+                    var Theme = $('#Themes').val();
+                    //要查询的风格
+                    var Style = $('#Styles').val();
+                    //要查询的语言
+                    var Language = $('#Languages').val();
+                    //执行重载
+                    table.reload('testReload', {
+                        page: {
+                            curr: 1 //重新从第 1 页开始
+                        }
+                        , where: {
+                            Name: Name
+                            , Theme: Theme
+                            , Style: Style
+                            , Language: Language
+                        }
+                    }, 'data');
+                    return false;
+                });
+            });
+        }
+    </script>
+</head>
+<body>
+    <form class="layui-form">
+        <div class="layui-inline">
+            <label class="layui-form-label">音乐名字：</label>
+            <div class="layui-input-inline">
+                <div class="layui-input-inline">
+                    <input type="text" name="Name" id="Name" required lay-verify="required" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-inline">
+            <label class="layui-form-label">音乐语种：</label>
+            <div class="layui-input-inline">
+                <div class="layui-input-inline">
+                    <input type="text" name="Language" id="Language" required lay-verify="required" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-inline">
+            <label class="layui-form-label">音乐风格：</label>
+            <div class="layui-input-inline">
+                <div class="layui-input-inline">
+                    <input type="text" name="Style" id="Style" required lay-verify="required" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-inline">
+            <label class="layui-form-label">音乐主题：</label>
+            <div class="layui-input-inline">
+                <div class="layui-input-inline">
+                    <input type="text" name="Theme" id="Theme" required lay-verify="required" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-input-inline">
+                <button class="layui-btn" lay-submit lay-filter="formDemo">查询</button>
+                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <table class="layui-hide" id="test" lay-filter="test" lay-data="{Id: 'test'}"></table>
+        </div>
+    </form>
+</body>
+</html>

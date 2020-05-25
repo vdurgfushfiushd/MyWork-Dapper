@@ -1,0 +1,126 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>群组聊天页面</title>
+    <script src="~/Scripts/jquery-3.3.1.js"></script>
+    <script src="~/Scripts/jquery.signalR-2.2.2.js"></script>
+    <script src="~/signalr/hubs"></script>
+    <link rel="stylesheet" href="~/layui/css/layui.css" media="all">
+    <script src="~/layui/layui.js" charset="utf-8"></script>
+    <script type="text/javascript">
+        var chatUserclient = $.connection.ChatUserHub.client;
+        var serverclient = $.connection.ChatUserHub.server;
+        //获取当前的connectionId（客户端响应服务端请求）
+        chatUserclient.onGetCurrentConnectionId = function () {
+        }
+        //将用户名和connectionId绑定（客户端响应服务端请求）
+        chatUserclient.onBindChatName = function () {
+        }
+        //发送消息（客户端响应服务端请求）
+        chatUserclient.onSendMessage = function (msg) {
+            //将服务端的结果显示在消息框中
+            var html = msg + '<br />'
+            $("#textarea").append(html);
+        }
+        //启动
+        $.connection.hub.start().done(function () {
+             var sender =@(ViewBag.SenderName);
+            serverclient.getCurrentConnectionId();
+            serverclient.bindChatName(sender);
+            //alert("连接成功");
+        }).fail(function () {
+            alert("连接testHub失败");
+        });
+        layui.use(['element', 'form'], function () {
+            var form = layui.form;
+            //监听提交
+            form.on('submit(formDemo)', function (obj) {
+                //群组id
+                var GroupId = $("#GroupId").val();
+                //群组名字(接收者名字)
+                var GroupName = $("#GroupName").val();
+                //发送的消息
+                var Message = $("#Message").val();
+                $.ajax({
+                    url: "/ChatMessage/Add",
+                    type: "post",
+                    data: { Receiver: GroupName, Message: Message },
+                    dataType: "json",
+                    success: function (data) {
+                        if (data.State == "success") {
+                            //alert("send success");
+                            //显示群组间发送的消息
+                            //window.location.href = '/Chat/GroupChat?Id=' + GroupId;
+                            //向自己和群组推送消息
+                            serverclient.sendMessage(SenderName, Receiver, Message);
+                        }
+                        else {
+                            window.location.href = '/General/Error';
+                        }
+                    },
+                    error: function () {
+                        window.location.href = '/General/Error';
+                    }
+                })
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="layui-fluid">
+        <div>
+            <div class="layui-form-item layui-form-text">
+                <div class="layui-input-block" style="text-align:center">
+                    @Model.GroupDTO.GroupName
+                </div>
+                <div class="layui-input-block">
+                    <input type="hidden" name="GroupName" id="GroupName" value=@Model.GroupDTO.GroupName class="layui-input" />
+                    <input type="hidden" name="GroupId" id="GroupId" value=@Model.GroupDTO.Id class="layui-input" />
+                </div>
+            </div>
+        </div>
+        <div class="layui-row">
+            <div class="layui-col-sm9">
+                <div>
+                    <div class="layui-form-item layui-form-text">
+                        <div class="layui-input-block" id="textarea" contenteditable="true" style="overflow:auto;border:1px solid #ccc;height:390px;">
+                            @{
+                                foreach (var ChatmessageDTO in Model.ChatMessageDTOs)
+                                {
+                                    <span>@(ChatmessageDTO.Sender)</span><span>&nbsp;&nbsp;</span><span>@(ChatmessageDTO.CreateTime)</span><br /><span>@(ChatmessageDTO.Message)</span><br />
+                                }
+                            }
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="layui-form-item layui-form-text">
+                        <label class="layui-form-label"></label>
+                        <div class="layui-input-block">
+                            <textarea name="Message" id="Message" placeholder="请输入消息内容" class="layui-textarea"></textarea>
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <div class="layui-input-block">
+                            <button class="layui-btn" lay-submit lay-filter="formDemo">发送</button>
+                            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-col-sm3" id="textarea" contenteditable="true" style="overflow:auto;border:1px solid #ccc;height:500px">
+                @{
+                    foreach (var ChatUserDTO in Model.ChatUserDTOs)
+                    {
+                        <span><a href="~/Chat/Chat?ReceiverName=@ChatUserDTO.Name" target="_blank">@ChatUserDTO.Name</span><br />
+                    }
+                }
+            </div>
+        </div>
+    </div>
+</body>
+</html>

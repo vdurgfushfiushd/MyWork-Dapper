@@ -1,0 +1,110 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>个人聊天页面</title>
+    <script src="~/Scripts/jquery-3.3.1.js"></script>
+    <script src="~/Scripts/jquery.signalR-2.2.2.js"></script>
+    <script src="~/signalr/hubs"></script>
+    <link rel="stylesheet" href="~/layui/css/layui.css" media="all">
+    <script src="~/layui/layui.js" charset="utf-8"></script>
+    <script type="text/javascript">
+        $(function () {
+            var chatUserclient = $.connection.ChatUserHub.client;
+            var serverclient = $.connection.ChatUserHub.server;
+            //获取当前的connectionId
+            chatUserclient.onGetCurrentConnectionId = function () {
+            }
+            //将用户名和connectionId绑定
+            chatUserclient.onBindChatName = function () {
+            }
+            //发送消息
+            chatUserclient.onSendMessage = function (msg) {
+                //将发送的消息加载消息框的后面
+                var html=msg+'<br />'
+                $("#textarea").append(html);
+            }
+            //启动singerR
+            $.connection.hub.start().done(function () {
+                var sender =@(ViewBag.SenderName);
+                serverclient.getCurrentConnectionId();
+                serverclient.bindChatName(sender);
+                //alert("连接成功");
+            }).fail(function () {
+                alert("连接testHub失败");
+            });
+            layui.use(['element', 'form'], function () {
+                var form = layui.form;
+                //监听提交
+                form.on('submit(formDemo)', function (obj) {
+                    //消息发送者
+                    var SenderName = $("#SenderName").val();
+                    //消息接收者
+                    var Receiver = $("#ReceiverName").val();
+                    //发送的消息
+                    var Message = $("#Message").val();
+                    $.ajax({
+                        url: "/ChatMessage/Add",
+                        type: "post",
+                        data: { Receiver: Receiver, Message: Message },
+                        dataType: "json",
+                        success: function (data) {
+                            if (data.State == "success") {
+                                //window.location.href = '/Chat/Chat?ReceiverName=' + Receiver;
+                                serverclient.sendMessage(SenderName, Receiver, Message);
+                            }
+                            else {
+                                window.location.href = '/General/Error';
+                            }
+                        },
+                        error: function () {
+                            window.location.href = '/General/Error';
+                        }
+                    })
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <div>
+        <form>
+            <div class="layui-form-item layui-form-text">
+                <div class="layui-input-block" style="text-align:center">
+                    @(ViewBag.ReceiverName)
+                </div>
+                <div class="layui-input-block">
+                    <input type="hidden" name="SenderName" id="SenderName" value=@(ViewBag.SenderName) class="layui-input" />
+                    <input type="hidden" name="ReceiverName" id="ReceiverName" value=@(ViewBag.ReceiverName) class="layui-input" />
+                </div>
+            </div>
+            <div class="layui-form-item layui-form-text">
+                <label class="layui-form-label"></label>
+                <div class="layui-input-block" id="textarea" contenteditable="true" style="overflow:auto;border:1px solid #ccc;height:300px;">
+                    @{
+                        foreach (var chatmessageDTO in Model)
+                        {
+                            <span>@(chatmessageDTO.Sender)</span><span>&nbsp;&nbsp;</span><span>@(chatmessageDTO.CreateTime)</span><br /><span>@(chatmessageDTO.Message)</span><br />
+                        }
+                    }
+                </div>
+            </div>
+            <div class="layui-form-item layui-form-text"> 
+                <label class="layui-form-label"></label>
+                <div class="layui-input-block">
+                    <textarea name="Message" id="Message" placeholder="请输入消息内容" class="layui-textarea"></textarea>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <button class="layui-btn" lay-submit lay-filter="formDemo">发送</button>
+                    <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

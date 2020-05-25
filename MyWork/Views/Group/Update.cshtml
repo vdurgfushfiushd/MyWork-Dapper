@@ -1,0 +1,70 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>群组修改</title>
+    <link rel="stylesheet" href="~/layui/css/layui.css" media="all">
+    <script src="~/layui/layui.js" charset="utf-8"></script>
+    <script src="~/Jquery/jquery-3.3.1.js"></script>
+</head>
+<body>
+    <form class="layui-form">
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <input type="hidden" name="Id" id="Id" value=@Model.Id />
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">群组名字：</label>
+            <div class="layui-input-block">
+                <input type="text" name="GroupName" id="GroupName" value=@Model.GroupName required lay-verify="required" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item layui-form-text">
+            <label class="layui-form-label">群组简述：</label>
+            <div class="layui-input-block">
+                <input type="text" name="Describe" id="Describe" value=@Model.Describe required lay-verify="required" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+            </div>
+        </div>
+    </form>
+    <script>
+        layui.use('form', function () {
+            var form = layui.form;
+            //监听提交
+            form.on('submit(formDemo)', function (data) {
+                var Id = $("#Id").val();
+                var GroupName = $("#GroupName").val();
+                var Describe = $("#Describe").val();
+                $.ajax({
+                    url: "/Group/Update",
+                    type: "post",
+                    data: { Id: Id,GroupName: GroupName, Describe: Describe },
+                    dataType: "json",
+                    success: function (data) {
+                        if (data.State == "success") {
+                            alert("群组修改成功");
+                        }
+                        else {
+                            alert("群组修改失败");
+                        }
+                    },
+                    error: function () {
+                        window.location.href = '/General/Error';
+                    }
+                });
+                return false;
+            });
+        });
+    </script>
+</body>
+</html>

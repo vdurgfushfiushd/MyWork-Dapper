@@ -1,0 +1,93 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>歌手新增</title>
+    <link rel="stylesheet" href="~/layui/css/layui.css" media="all">
+    <script src="~/layui/layui.js" charset="utf-8"></script>
+    <script src="~/Jquery/jquery-3.3.1.js"></script>
+</head>
+<body>
+    <form class="layui-form">
+        <div class="layui-form-item">
+            <label class="layui-form-label">歌手名字：</label>
+            <div class="layui-input-block">
+                <input type="text" name="Name" id="Name" required lay-verify="required" placeholder="请输入名字" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">歌手风格：</label>
+            <div class="layui-input-inline">
+                <input type="text" name="Style" id="Style" required lay-verify="required" placeholder="请输入风格" autocomplete="off" class="layui-input">
+            </div>
+            <div class="layui-form-mid layui-word-aux">辅助文字</div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">歌手国家：</label>
+            <div class="layui-input-inline">
+                <input type="text" name="Country" id="Country" required lay-verify="required" placeholder="请输入国家" autocomplete="off" class="layui-input">
+            </div>
+            <div class="layui-form-mid layui-word-aux">辅助文字</div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">歌手性别：</label>
+            <div class="layui-input-block">
+                <select name="sex" lay-filter="aihao">
+                    <option value="man">男</option>
+                    <option value="woman">女</option>
+                    <option value="group">组合</option>
+                    <option value="unman_unwoman">不男不女</option>
+                </select>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">歌手照片：</label>
+            <div class="layui-input-inline">
+                <input type="text" name="Picture" id="Picture" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+            </div>
+        </div>
+    </form>
+
+    <script>
+        layui.use('form', function(){
+        var form = layui.form;
+            //监听提交
+            form.on('submit(formDemo)', function (data) {
+                var Name = $("#Name").val();
+                var Style = $("#Style").val();
+                var Country = $("#Country").val();
+                var Sex = $("#sex").val();
+                var Picture = $("#Picture").val();
+                $.ajax({
+                    url: "/Singer/Add",
+                    type: "post",
+                    data: { Name: Name, Style: Style, Country: Country, Sex: Sex, Picture: Picture },
+                    dataType: "json",
+                    success: function (data) {
+                        if (data.State == "success") {
+                            window.location.href = '/Singer/Index';
+                        }
+                        else {
+                            alert(data.Message);
+                        }
+                    },
+                    error: function () {
+                        window.location.href = '/General/Error';
+                    }
+                });
+                return false;
+            });
+    });
+    </script>
+</body>
+</html>

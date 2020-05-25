@@ -1,0 +1,82 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>聊天首页</title>
+    <script src="~/Scripts/jquery-3.3.1.js"></script>
+    <script src="~/Scripts/jquery.signalR-2.2.2.js"></script>
+    <script src="~/signalr/hubs"></script>
+    <link rel="stylesheet" href="~/layui/css/layui.css" media="all">
+    <script src="~/layui/layui.js" charset="utf-8"></script>
+    <script>
+        layui.use('element', function () {
+            var $ = layui.jquery
+                , element = layui.element; //Tab的切换功能，切换事件监听等，需要依赖element模块
+            //触发事件
+            var active = {
+                //tab切换
+                tabChange: function () {
+                    //切换到指定Tab项
+                    //element.tabChange('demo', '22'); //切换到：用户管理
+
+                }
+            };
+        });
+    </script>
+
+</head>
+<body>
+    <div>
+        <div class="top">
+            <a>当前对象(@Model.ChatUserDTO.Name)</a><a href="~/ChatUser/Exit?Name=@Model.ChatUserDTO.Name">退出</a>
+        </div>
+        <div class="middle">
+            <div class="middle_top">
+                <div class="layui-tab layui-tab-brief" lay-filter="choose">
+                    <ul class="layui-tab-title">
+                        <li class="layui-this">我的联系人</li>
+                        <li>我的群组</li>
+                        <li>我的消息</li>
+                        <li>加入群组</li>
+                        <li>新增好友</li>
+                    </ul>
+                    <div class="layui-tab-content">
+                        <div class="layui-tab-item layui-show">
+                            <table class="layui-table">
+                                @{
+                                    foreach (var ChatUserDTO in Model.ChatUserDTOs)
+                                    {
+                                        <tr>
+                                            <td class="Receiver"><a href="~/Chat/Chat?ReceiverName=@ChatUserDTO.Name" target="_blank">@ChatUserDTO.Name</a></td>
+                                        </tr>
+                                    }
+                                }
+                            </table>
+                        </div>
+                        <div class="layui-tab-item">
+                            <table class="layui-table">
+                                @{
+                                    foreach (var GroupDTO in Model.GroupDTOs)
+                                    {
+                                        <tr>
+                                            <td><a href="~/Chat/GroupChat?Id=@GroupDTO.Id" target="_blank">@GroupDTO.GroupName</a></td>
+                                        </tr>
+                                    }
+                                }
+                            </table>
+                        </div>
+                        <div class="layui-tab-item">消息</div>
+                        <div class="layui-tab-item"><a href="~/ChatUser/JoinGroup" target="_blank">群组添加</a></div>
+                        <div class="layui-tab-item"><a href="~/ChatUser/AddFriend" target="_blank">好友添加</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
